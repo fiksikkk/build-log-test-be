@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma-client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model WorkType {
+  id        Int            @id @default(autoincrement())
+  name      String         @unique @db.VarChar(255)
+  entries   WorkLogEntry[]
+  createdAt DateTime       @default(now()) @map("created_at")
+  updatedAt DateTime       @updatedAt @map("updated_at")
+
+  @@map("work_types")
+}
+
+model MeasurementUnit {
+  id        Int            @id @default(autoincrement())
+  name      String         @unique @db.VarChar(100)
+  symbol    String         @unique @db.VarChar(20)
+  entries   WorkLogEntry[]
+  createdAt DateTime       @default(now()) @map("created_at")
+  updatedAt DateTime       @updatedAt @map("updated_at")
+
+  @@map("measurement_units")
+}
+
+model WorkLogEntry {
+  id                Int              @id @default(autoincrement())
+  workDate          DateTime         @map("work_date") @db.Date
+  workTypeId        Int              @map("work_type_id")
+  measurementUnitId Int              @map("measurement_unit_id")
+  volume            Decimal          @db.Decimal(10, 2)
+  workerName        String           @map("worker_name") @db.VarChar(255)
+  createdAt         DateTime         @default(now()) @map("created_at")
+  updatedAt         DateTime         @updatedAt @map("updated_at")
+  workType          WorkType         @relation(fields: [workTypeId], references: [id])
+  measurementUnit   MeasurementUnit  @relation(fields: [measurementUnitId], references: [id])
+
+  @@index([workDate])
+  @@index([workTypeId])
+  @@index([measurementUnitId])
+  @@map("work_log_entries")
+}

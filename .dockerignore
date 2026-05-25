@@ -1,0 +1,6 @@
+node_modules
+dist
+.git
+.pnpm-store
+src/generated/prisma
+src/generated/prisma-client
