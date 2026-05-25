@@ -21,4 +21,4 @@ echo "Running seed..."
 pnpm prisma db seed
 
 echo "Starting NestJS server..."
-exec node dist/main.js
+exec node dist/src/main.js
