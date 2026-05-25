@@ -34,11 +34,11 @@ services:
     env_file:
       - .env
     environment:
-      PORT: ${PORT:-3000}
+      PORT: ${PORT:-3001}
       NODE_ENV: ${NODE_ENV:-production}
       DATABASE_URL: ${DATABASE_URL:-postgresql://postgres:postgres@db:5432/build_log}
     ports:
-      - "${PORT:-3000}:3000"
+      - "${PORT:-3001}:${PORT:-3001}"
 
 volumes:
   postgres_data:
