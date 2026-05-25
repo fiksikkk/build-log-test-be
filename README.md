@@ -71,8 +71,8 @@ docker compose up -d --build
 
 После запуска:
 
-- API: `http://localhost:3000/api`
-- Swagger: `http://localhost:3000/api/docs`
+- API: `http://localhost:3001/api`
+- Swagger: `http://localhost:3001/api/docs`
 
 ## Примечания по деплою на сервер
 
@@ -121,7 +121,7 @@ docker compose up -d --build
 Пример production `.env` на сервере:
 
 ```env
-PORT=3000
+PORT=3001
 NODE_ENV=production
 
 POSTGRES_DB=build_log
